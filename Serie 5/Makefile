@@ -1,34 +1,28 @@
-# AP 30-Aug-2012 Makefile
-#
 SHELL=/bin/sh
 CC=/usr/bin/gcc -g
 
-DEPENDFILE=.depend
+#CFLAGS = -DMY_ATOI
 
-HDR = invert.h
-SRC = $(HDR:%h=%c) cap_rev.c
-OBJ = $(SRC:%.c=%.o)
+CAPREV_SRC = cap_rev.c
+CAPREV_OBJ = $(CAPREV_SRC:%.c=%.o)
 
-TARGETS=cap_rev invert
+ATOI_HDR = atoi.h
+ATOI_SRC = $(ATOI_HDR:%h=%c) test_atoi.c
+ATOI_OBJ = $(ATOI_SRC:%.c=%.o)
+
+TARGETS=cap_rev test_atoi
 
 all: $(TARGETS)
 
+debug: CFLAGS += -g
 debug:
 	for i in $(TARGETS) ; do touch $$i.c ; done
-	make CFLAGS=-g all
 
+cap_rev: $(CAPREV_OBJ)
+	$(CC) -o cap_rev $(CAPREV_OBJ)
 
-cap_rev: $(OBJ)
-	make dep
-	$(CC) -o cap_rev $(OBJ)
-
-invert: cap_rev
-	ln -f cap_rev invert
-
-dep: $(SRC) $(HDR) 
-	$(CC) -MM $(SRC) > $(DEPENDFILE)
+test_atoi: $(ATOI_OBJ)
+	$(CC) -o test_atoi $(ATOI_OBJ)
 
 clean:
-	rm -f $(OBJ) numbers fac fib $(DEPENDFILE)
-
--include $(DEPENDFILE)
+	rm -f $(CAPREV_OBJ) $(ATOI_OBJ) $(TARGETS)
