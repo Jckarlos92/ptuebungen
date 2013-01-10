@@ -3,7 +3,8 @@
 
 int main (int argc, char** argv) {
     /* CharacterCount, WordCount, LineCount */
-    int workingChar, lastChar='\n';
+    int workingChar; 
+    int lastChar = (int)'\n';
     unsigned int cc=0, wc=0, lc=0; 
 
     while ((workingChar = getchar()) != EOF) {
