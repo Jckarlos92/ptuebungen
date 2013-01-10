@@ -4,10 +4,10 @@
 #include <string.h>
 
 int main( int argc, char** argv ) {
-	if( argc == 1) {
-		printf("Bitte Funktion mit Parametern aufrufen!");
-		return 1;
-	} 
+    if( argc == 1) {
+        printf("Bitte Funktion mit Parametern aufrufen!");
+        return 1;
+    } 
 
     int i, j;
     for (i=argc-1; i>=1; --i) {
@@ -18,5 +18,5 @@ int main( int argc, char** argv ) {
     }
     printf("\n");
 
-	return 0;
+    return 0;
 }		
