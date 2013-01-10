@@ -3,13 +3,15 @@
 # include <string.h>
 # include <stdio.h>
 
-int atoi (const char* s) {
+long int atoi (const char* s) {
 	int    i = 0;
-    int    n = 0;
+    long int    n = 0;
     int sign = 1;
 
     if (s[i] == '-') {
         sign = -1;
+        ++i;
+    } else if (s[i] == '+') {
         ++i;
     }
 
