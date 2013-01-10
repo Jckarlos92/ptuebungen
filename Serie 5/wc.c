@@ -1,31 +1,26 @@
 # include <stdio.h>
+# include <stdlib.h>
 
-int main (int, char**) {
+int main (int argc, char** argv) {
     /* CharacterCount, WordCount, LineCount */
-    int workingChar;
+    int workingChar, lastChar='\n';
     unsigned int cc=0, wc=0, lc=0; 
 
     while ((workingChar = getchar()) != EOF) {
         if ((char)workingChar == '\n') {
-            if (wc == 0) {
-                /* wenn ein Zeilenumbruch gefunden wurde, dann existieren schon zwei Zeilen!*/
-                ++wc;
-            }
             ++lc;
-        } else if ((char)workingChar == ' ') {
-            if (wc == 0) {
-                /* wenn eine Leerstelle gefunden wurde, dann existieren schon zwei Wörter!*/
-                ++wc;
-            }
+        } else if  (((char)workingChar == ' ' && isgraph(lastChar)) ||
+                   ((char)lastChar == '\n' && isgraph(workingChar))) {
             ++wc;
-        } else {
-            ++cc;
-        }
+        } 
+
+        ++cc;
+        lastChar = workingChar;
     }
 
-    printf("Zeichen: %ud\n", cc);
-    printf("Wörter : %ud\n", wc);
-    printf("Zeilen : %ud\n", lc);
+    printf("Zeichen: %u\n", cc);
+    printf("Wörter : %u\n", wc);
+    printf("Zeilen : %u\n", lc);
 
     return 0;
 }
