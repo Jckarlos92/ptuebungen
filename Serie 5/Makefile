@@ -10,7 +10,10 @@ ATOI_HDR = atoi.h
 ATOI_SRC = $(ATOI_HDR:%h=%c) test_atoi.c
 ATOI_OBJ = $(ATOI_SRC:%.c=%.o)
 
-TARGETS=cap_rev test_atoi
+WC_SRC = wc.c
+WC_OBJ = $(WC_SRC:%.c=%.o)
+
+TARGETS=cap_rev test_atoi wc
 
 all: $(TARGETS)
 
@@ -23,6 +26,9 @@ cap_rev: $(CAPREV_OBJ)
 
 test_atoi: $(ATOI_OBJ)
 	$(CC) -o test_atoi $(ATOI_OBJ)
+
+wc: $(WC_OBJ)
+	$(CC) -o wc $(WC_OBJ)
 
 clean:
 	rm -f $(CAPREV_OBJ) $(ATOI_OBJ) $(TARGETS)
