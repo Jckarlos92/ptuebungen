@@ -15,7 +15,8 @@ int main (int argc, char** argv) {
         return 1;
     }
 
-    int i=1, result;
+    int i=1;
+    long int result;
     for (; i<argc; ++i) {
         result = atoi(argv[i]);
 
