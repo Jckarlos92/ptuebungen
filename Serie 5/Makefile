@@ -30,4 +30,4 @@ wc: $(WC_OBJ)
 	$(CC) $(WC_OBJ) -o wc 
 
 clean:
-	rm -f $(CAPREV_OBJ) $(ATOI_OBJ) $(TARGETS)
+	rm -f $(CAPREV_OBJ) $(ATOI_OBJ) $(WC_OBJ) $(TARGETS)
