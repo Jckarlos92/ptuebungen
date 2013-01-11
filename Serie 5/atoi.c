@@ -1,7 +1,6 @@
 # include "atoi.h"
 
 # include <string.h>
-# include <stdio.h>
 
 long int atoi (const char* s) {
 	int      i = 0;

@@ -15,6 +15,12 @@ int main (int argc, char** argv) {
         return 1;
     }
 
+#ifdef MY_ATOI
+        printf("test_atoi mit selbstgeschriebner atoi-Funktion\n");
+#else
+        printf("test_atoi mit atoi-Funktion aus Standardbibliothek\n");
+#endif
+
     int i=1;
     long int result;
     for (; i<argc; ++i) {
