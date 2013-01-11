@@ -1,5 +1,5 @@
 SHELL=/bin/sh
-CC=/usr/bin/gcc -g
+CC=/usr/bin/gcc
 
 #CFLAGS = -DMY_ATOI
 
@@ -18,17 +18,16 @@ TARGETS=cap_rev test_atoi wc
 all: $(TARGETS)
 
 debug: CFLAGS += -g
-debug:
-	for i in $(TARGETS) ; do touch $$i.c ; done
+debug: $(TARGETS)
 
 cap_rev: $(CAPREV_OBJ)
-	$(CC) -o cap_rev $(CAPREV_OBJ)
+	$(CC) $(CAPREV_OBJ) -o cap_rev
 
 test_atoi: $(ATOI_OBJ)
-	$(CC) -o test_atoi $(ATOI_OBJ)
+	$(CC) $(ATOI_OBJ) -o test_atoi 
 
 wc: $(WC_OBJ)
-	$(CC) -o wc $(WC_OBJ)
+	$(CC) $(WC_OBJ) -o wc 
 
 clean:
 	rm -f $(CAPREV_OBJ) $(ATOI_OBJ) $(TARGETS)
