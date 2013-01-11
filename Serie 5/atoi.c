@@ -4,9 +4,9 @@
 # include <stdio.h>
 
 long int atoi (const char* s) {
-	int    i = 0;
-    long int    n = 0;
-    int sign = 1;
+	int      i = 0;
+    long int n = 0;
+    int   sign = 1;
 
     if (s[i] == '-') {
         sign = -1;
