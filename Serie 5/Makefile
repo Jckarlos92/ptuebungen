@@ -1,7 +1,8 @@
 SHELL=/bin/sh
 CC=/usr/bin/gcc
 
-#CFLAGS = -DMY_ATOI
+CLFAGS = -Wall
+#CFLAGS += -DMY_ATOI
 
 CAPREV_SRC = cap_rev.c
 CAPREV_OBJ = $(CAPREV_SRC:%.c=%.o)
