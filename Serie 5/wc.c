@@ -2,7 +2,7 @@
 # include <stdlib.h>
 # include <ctype.h>
 
-int main (int argc, char** argv) {
+int main (/*@unused@*/int argc,/*@unused@*/char** argv) {
     /* CharacterCount, WordCount, LineCount */
     int workingChar; 
     int lastChar = (int)'\n';
