@@ -1,7 +1,7 @@
 SHELL=/bin/sh
 CC=/usr/bin/gcc
 
-CLFAGS = -Wall
+CFLAGS = -Wall
 #CFLAGS += -DMY_ATOI
 
 CAPREV_SRC = cap_rev.c
