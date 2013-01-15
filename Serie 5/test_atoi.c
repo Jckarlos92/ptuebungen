@@ -9,7 +9,7 @@
 int main (int argc, char** argv) {
     if (argc == 1) {
         printf("Bitte mindestens eine Zahl als Parameter übergeben!\n");
-        printf("Zahlenformat:\n");
+rintf("Zahlenformat:\n");
         printf("    - dezimal mit oder ohne Vorzeichen: [+/-]10\n");
         printf("    - hexadezimal mit oder ohne Vorzeichen: [+/-]0xDeaDBeeF\n");
         return 1;
