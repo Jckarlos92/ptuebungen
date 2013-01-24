@@ -16,12 +16,16 @@ struct _stack {
 } StackT;
 
 struct stackElem {
-	int val;
+    int isFloat;
+	union {
+        int i;
+        double f;
+    } val;
 	stackElemPtr next;
 	stackElemPtr prev;
 } stackElemT;
 
-void push( Stack s, int val ) {
+void push_int( Stack s, int val ) {
 	stackElemPtr pt;
 	if (! s) {
 		error = NOT_INITIALIZED;
@@ -33,16 +37,38 @@ void push( Stack s, int val ) {
 		error = s->error;
 		return;
 	}
-	pt->val = val;
-	pt->prev = NULL;
-	pt->next = s->top;
-	s->top = pt;
-	s->error = OK;
-	error = s->error;
+    pt->isFloat = 0;
+	pt->val.i   = val;
+	pt->prev    = NULL;
+	pt->next    = s->top;
+	s->top      = pt;
+	s->error    = OK;
+	error       = s->error;
 }
 	
-int pop( Stack s ) {
-	int rc;
+void push_double( Stack s, double val ) {
+	stackElemPtr pt;
+	if (! s) {
+		error = NOT_INITIALIZED;
+		return;
+	}
+	pt = (stackElemPtr) malloc( sizeof( stackElemT ));
+	if (! pt ) {
+		s->error = NO_MEMORY;
+		error = s->error;
+		return;
+	}
+    pt->isFloat = 1;
+	pt->val.f   = val;
+	pt->prev    = NULL;
+	pt->next    = s->top;
+	s->top      = pt;
+	s->error    = OK;
+	error       = s->error;
+}
+
+double pop( Stack s ) {
+	double rc;
 	stackElemPtr pt;
 	if (! s ) {
 		error = NOT_INITIALIZED;
@@ -53,7 +79,7 @@ int pop( Stack s ) {
 		error = s->error;
 		return 0;
 	}
-	rc = s->top->val;
+	rc = ((s->top->isFloat)?s->top->val.f:(double)s->top->val.i);
 	pt = s->top;
 	s->top = s->top->next;
 	if (s->top)
@@ -64,7 +90,7 @@ int pop( Stack s ) {
 	return rc;
 }
 	
-int top( Stack s ) {
+double top( Stack s ) {
 	if (! s ) {
 		error = NOT_INITIALIZED;
 		return;
@@ -76,7 +102,7 @@ int top( Stack s ) {
 	}
 	s->error = OK;
 	error = s->error;
-	return s->top->val;
+	return ((s->top->isFloat)?s->top->val.f:(double)s->top->val.i);
 }
 
 void swap( Stack s ) {

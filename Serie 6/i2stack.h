@@ -10,9 +10,10 @@ enum errorT { OK, NOT_INITIALIZED, EMPTY, NO_MEMORY };
 
 typedef struct _stack* Stack;
 
-void push( Stack, int );
-int pop( Stack );
-int top( Stack );
+void push_int( Stack, int );
+void push_double( Stack, double );
+double pop( Stack );
+double top( Stack );
 void swap( Stack );
 
 Stack allocStack();
