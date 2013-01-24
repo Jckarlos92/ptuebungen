@@ -17,6 +17,9 @@ all: $(TARGETS)
 test2stack: $(STACK_OBJ)
 	$(CC) $(CFLAGS) $(STACK_OBJ) -o test2stack
 
+debug: CFLAGS+= -g
+debug: all
+
 clean: 
 	rm -f $(TARGETS)
 	rm -f *.o
