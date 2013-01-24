@@ -19,6 +19,12 @@ int comp_lexi( char * s1, char * s2) {
 	return strcmp(s1, s2);
 }
 
+/* resultat < 0 wenn s1 numerisch größer s2   */
+/* resultat > 0 wenn s1 numerisch kleiner s2  */
+int comp_num( char * s1, char * s2) {
+    return (atoi(s1) > atoi(s2)) ? 1 : -1;
+}
+
 /* Vertausche zwei Strings in Abhaengigkeit von compare() */
 int swap( char * s[], int i, int j, int (*compare)(char *, char *)) {
 	char * t;
@@ -32,7 +38,7 @@ int swap( char * s[], int i, int j, int (*compare)(char *, char *)) {
 }
 
 void usage(char * prog) {
-	printf("usage: %s [-lexi | -len] <string> <string>+\n", prog);
+	printf("usage: %s [-lexi | -len | -num] <string> <string>+\n", prog);
 	exit(1);
 }
 
@@ -48,12 +54,16 @@ int main( int argc, char *argv[] ){
 	first = 1;
 	if (argv[1][0] == '-') {
 		if (argc < 4) usage( prog ); 
-		if (strcmp( &argv[1][1], "len") == 0)
+		if (strcmp( &argv[1][1], "len") == 0) {
 			/* Der Laenge nach sortieren */
 			compare_function = comp_len;
-		if (strcmp( &argv[1][1], "lexi") == 0)
+        } else if (strcmp( &argv[1][1], "lexi") == 0) {
 			/* Lexikographisch sortieren */
 			compare_function = comp_lexi;
+        } else if (strcmp (&argv[1][1], "num") == 0) {
+			/* Numerisch sortieren */
+            compare_function = comp_num;
+        }
 		first = 2;
 	}
 	/* Sortieren durch paarweisen Vergleich */
@@ -65,6 +75,8 @@ int main( int argc, char *argv[] ){
 		printf("Der Laenge nach aufsteigend sortiert:\n");
 	if (compare_function == comp_lexi)
 		printf("Lexikographisch aufsteigend sortiert:\n");
+	if (compare_function == comp_num)
+		printf("Numerisch aufsteigend sortiert:\n");
 	for ( i = first; i < argc; i++ )
 		printf("%s\n", argv[i]);
 }
