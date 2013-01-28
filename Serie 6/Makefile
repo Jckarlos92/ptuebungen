@@ -10,15 +10,15 @@ STACK_HDR=i2stack.h
 STACK_SRC=$(STACK_HDR:%.h=%.c) test2stack.c
 STACK_OBJ=$(STACK_SRC:%.c=%.o)
 
-TARGETS = test2stack strsort
+TARGETS = test2stack strsort aufgabe2 aufgabe3
 
 all: $(TARGETS)
 
-test2stack: $(STACK_OBJ)
-	$(CC) $(CFLAGS) $(STACK_OBJ) -o test2stack
-
 debug: CFLAGS+= -g
 debug: all
+
+test2stack: $(STACK_OBJ)
+	$(CC) $(CFLAGS) $(STACK_OBJ) -o test2stack
 
 clean: 
 	rm -f $(TARGETS)
