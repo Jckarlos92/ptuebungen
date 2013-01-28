@@ -67,7 +67,7 @@ void push_double( Stack s, double val ) {
 	error       = s->error;
 }
 
-double pop( Stack s ) {
+double pop( Stack s, int *isf ) {
 	double rc;
 	stackElemPtr pt;
 	if (! s ) {
@@ -80,6 +80,7 @@ double pop( Stack s ) {
 		return 0;
 	}
 	rc = ((s->top->isFloat)?s->top->val.f:(double)s->top->val.i);
+    *isf = (s->top->isFloat)?1:0;
 	pt = s->top;
 	s->top = s->top->next;
 	if (s->top)
@@ -90,7 +91,7 @@ double pop( Stack s ) {
 	return rc;
 }
 	
-double top( Stack s ) {
+double top( Stack s, int *isf ) {
 	if (! s ) {
 		error = NOT_INITIALIZED;
 		return 0;
@@ -102,6 +103,7 @@ double top( Stack s ) {
 	}
 	s->error = OK;
 	error = s->error;
+    *isf = (s->top->isFloat)?1:0;
 	return ((s->top->isFloat)?s->top->val.f:(double)s->top->val.i);
 }
 

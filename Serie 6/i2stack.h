@@ -12,8 +12,8 @@ typedef struct _stack* Stack;
 
 void push_int( Stack, int );
 void push_double( Stack, double );
-double pop( Stack );
-double top( Stack );
+double pop( Stack, int*);
+double top( Stack, int*);
 void swap( Stack );
 
 Stack allocStack();
