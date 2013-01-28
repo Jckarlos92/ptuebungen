@@ -93,7 +93,7 @@ double pop( Stack s ) {
 double top( Stack s ) {
 	if (! s ) {
 		error = NOT_INITIALIZED;
-		return;
+		return 0;
 	}
 	if(! s->top) {
 		s->error = EMPTY;

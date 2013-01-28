@@ -4,6 +4,8 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
+# include <ctype.h>
 # include "i2stack.h"
 
 # define LEN 80
@@ -90,6 +92,11 @@ int main(int argc, char * argv[]) {
 
 			print_error( s );
 		} else if (strcmp( command, "pop" ) == 0) {
+            /* wir schummeln hier ein bisschen,
+             * anstatt uns zu merken, ob der aktuelle Wert auf dem Stack
+             * jetzt int oder float ist, wandeln wir ihn einfach in float um
+             * das hat den Vorteil, dass wir innerhalb der main-Methode etwas
+             * Code für Fallunterscheidungen sparen */
 			dval = pop( s );
 			printf("pop: value = %f\n", dval );
 			print_error( s );
@@ -97,6 +104,7 @@ int main(int argc, char * argv[]) {
 			swap( s );
 			print_error( s );
 		} else if (strcmp( command, "top" ) == 0) {
+            /* siehe begründung oben */
 			dval = top( s );
 			printf("top: value = %f\n", dval );
 			print_error( s );
@@ -111,4 +119,6 @@ int main(int argc, char * argv[]) {
 			print_error( s );
 		}
 	}
+
+    return 0;
 }
