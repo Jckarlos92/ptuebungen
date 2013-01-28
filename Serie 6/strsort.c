@@ -22,7 +22,22 @@ int comp_lexi( char * s1, char * s2) {
 /* resultat < 0 wenn s1 numerisch größer s2   */
 /* resultat > 0 wenn s1 numerisch kleiner s2  */
 int comp_num( char * s1, char * s2) {
-    return (atoi(s1) > atoi(s2)) ? 1 : -1;
+    unsigned int sum_s1, sum_s2, i,l;
+    sum_s1 = sum_s2 = 0;
+
+    /* die einzelnen char-Werte von s1 aufsummieren */
+    l = strlen(s1);
+    for (i=0; i<l; ++i) {
+        sum_s1 += s1[i];
+    }
+
+    /* analog für s2 */
+    l = strlen(s2);
+    for (i=0; i<l; ++i) {
+        sum_s2 += s2[i];
+    }
+
+    return (sum_s1 > sum_s2) ? 1 : -1;
 }
 
 /* Vertausche zwei Strings in Abhaengigkeit von compare() */
@@ -73,10 +88,13 @@ int main( int argc, char *argv[] ){
 
 	if (compare_function == comp_len)
 		printf("Der Laenge nach aufsteigend sortiert:\n");
-	if (compare_function == comp_lexi)
+    else if (compare_function == comp_lexi)
 		printf("Lexikographisch aufsteigend sortiert:\n");
-	if (compare_function == comp_num)
+    else if (compare_function == comp_num)
 		printf("Numerisch aufsteigend sortiert:\n");
-	for ( i = first; i < argc; i++ )
+	
+    for ( i = first; i < argc; i++ )
 		printf("%s\n", argv[i]);
+
+    return 0;
 }
