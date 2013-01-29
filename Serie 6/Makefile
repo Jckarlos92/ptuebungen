@@ -1,6 +1,3 @@
-# AP 15-sep-12 Examples for Unit 9
-#
-#
 SHELL=/bin/sh
 
 CC=/usr/bin/gcc
@@ -18,7 +15,6 @@ debug: CFLAGS+= -g
 debug: all
 
 test2stack: $(STACK_OBJ)
-	$(CC) $(CFLAGS) $(STACK_OBJ) -o test2stack
 
 clean: 
 	rm -f $(TARGETS)
