@@ -92,22 +92,27 @@ int main(int argc, char * argv[]) {
 
 			print_error( s );
 		} else if (strcmp( command, "pop" ) == 0) {
-			dval = pop( s, &val);
-            if (val)
+            isFloat = pop(s, &val, &dval);
+
+            if (isFloat > 0) {
 			    printf("pop: value = %f\n", dval );
-            else
-			    printf("pop: value = %d\n", (int)dval );
+            } else if (isFloat == 0) {
+			    printf("pop: value = %d\n", val );
+            }
                 
 			print_error( s );
 		} else if (strcmp( command, "swap" ) == 0) {
 			swap( s );
 			print_error( s );
 		} else if (strcmp( command, "top" ) == 0) {
-			dval = top( s, &val );
-            if (val)
-			    printf("pop: value = %f\n", dval );
-            else
-			    printf("pop: value = %d\n", (int)dval );
+            isFloat = top(s, &val, &dval);
+
+            if (isFloat > 0) {
+                printf("top: value = %f\n", dval);
+            } else if (isFloat == 0) {
+                printf("top: value = %d\n", val);
+            }
+
 			print_error( s );
 		} else if (strcmp(command, "free") == 0) {
 			freeStack( s );

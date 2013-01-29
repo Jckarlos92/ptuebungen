@@ -67,20 +67,38 @@ void push_double( Stack s, double val ) {
 	error       = s->error;
 }
 
-double pop( Stack s, int *isf ) {
-	double rc;
+/* gibt 0 zurück, wenn int auf dem stack lag,
+ * sonst 1
+ * Fehlercode: -1 
+ * in der top Funktion ist vieles analog, deswegen beschreib ich
+ * nur das hier en detail*/
+char pop( Stack s, int *i, double *d ) {
+    char rc;
 	stackElemPtr pt;
+
+    /* error handling hier */
 	if (! s ) {
 		error = NOT_INITIALIZED;
-		return 0;
+		return -1;
 	}
 	if(! s->top) {
 		s->error = EMPTY;
 		error = s->error;
-		return 0;
+		return -1;
 	}
-	rc = ((s->top->isFloat)?s->top->val.f:(double)s->top->val.i);
-    *isf = (s->top->isFloat)?1:0;
+
+    /* entscheiden, welcher Wert in der Union benutzt werden soll,
+     * bzw brauchbar ist */
+    if (s->top->isFloat) {
+        *d = s->top->val.f;
+    } else {
+        *i = s->top->val.i;
+    }
+
+    /* return code entsprechend setzen */
+    rc = (s->top->isFloat)?1:0;
+
+    /* und hier das "pop" ausführen */
 	pt = s->top;
 	s->top = s->top->next;
 	if (s->top)
@@ -91,20 +109,29 @@ double pop( Stack s, int *isf ) {
 	return rc;
 }
 	
-double top( Stack s, int *isf ) {
+/* gibt 0 zurück, wenn int auf dem stack liegt,
+ * sonst 1
+ * Fehlercode: -1 */
+char top( Stack s, int *i, double *d ) {
 	if (! s ) {
 		error = NOT_INITIALIZED;
-		return 0;
+		return -1;
 	}
 	if(! s->top) {
 		s->error = EMPTY;
 		error = s->error;
-		return 0;
+		return -1;
 	}
 	s->error = OK;
 	error = s->error;
-    *isf = (s->top->isFloat)?1:0;
-	return ((s->top->isFloat)?s->top->val.f:(double)s->top->val.i);
+
+    if (s->top->isFloat) {
+        *d = s->top->val.f;
+    } else {
+        *i = s->top->val.i;
+    }
+
+	return ((s->top->isFloat)?1:0);
 }
 
 void swap( Stack s ) {
