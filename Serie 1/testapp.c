@@ -1,4 +1,4 @@
-# include "allocate.h"
+# include "arena.h"
 # include <stdio.h>
 
 # define check( VAR ) \
@@ -13,4 +13,6 @@ int main() {
 	h = allocate(); check( h );
 	deallocate(f);
 	deallocate(h);
+
+    return 0;
 }
