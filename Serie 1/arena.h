@@ -4,7 +4,11 @@
 
 #define BLOCKSIZE 40
 #define NUM_BLOCKS 1024
+
 extern unsigned char arena[BLOCKSIZE*NUM_BLOCKS];
 extern unsigned short allocated_map[NUM_BLOCKS/16];
+
+extern void* allocate(void);
+extern void deallocate(void *data);
 
 #endif
