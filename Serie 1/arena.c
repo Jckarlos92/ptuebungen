@@ -5,39 +5,47 @@
 unsigned char arena[BLOCKSIZE*NUM_BLOCKS]; 
 unsigned short allocated_map[NUM_BLOCKS/16];
 
-static int map_index = 0;
-
 void* allocate(void) {
-    /* ersten freien 16er Block finden */
-/*    int i;
-    for (i = 0; i < NUM_BLOCKS; ++i) {
-        if (allocated_map[i] < USHRT_MAX) break;
-    }*/
+    /* freies Bit suchen */
+    int fbitIndex;
+    int block;
 
-    if (map_index == NUM_BLOCKS) return NULL;
+    for (block=0; block < NUM_BLOCKS; ++block) {
+        if (allocated_map[block] == USHRT_MAX) continue;
 
-    void* block = malloc(BLOCKSIZE);
+        for (fbitIndex=0; fbitIndex < 16; ++fbitIndex) {
+            unsigned short test = allocated_map[block] & ((unsigned short)1 << fbitIndex);
 
-    /* prüfen ob Allokation erfolgreich */
-    if (block) {
-        allocated_map[map_index] << 1;
-        allocated_map[map_index] & (short)1;
-
-        if (allocated_map[map_index] == USHRT_MAX)
-            ++map_index;
+            if (test == 0) {
+                allocated_map[block] = allocated_map[block] | ((unsigned short)1 << fbitIndex);
+                printf("Debug from allocate():\n");
+                dprint(block*16+fbitIndex);
+                dprint(allocated_map[block]);
+                printf("\n");
+                return arena + (block*16 + fbitIndex)*BLOCKSIZE;
+            }
+        }
     }
 
-    return block;
+    return NULL;
 }
 
 void deallocate(void *data) {
-    if (!data) return;
+    /* obige Formel rückgängig machen und Block (also index für allocated_map suchen)
+     * Wenn Block gefunden, Index des gewählten Bits finden */
+    int block = ((unsigned char*)data - arena)/(BLOCKSIZE*16);
+    int fbitIndex = (((unsigned char*)data - arena)/BLOCKSIZE) - block * 16;
 
-    free(data);
+    unsigned short mask = 1;
+    mask = mask << fbitIndex;
 
-    /* bit zurücksetzen in allocated_map */
-    allocated_map[map_index] >> 1;
-
-    if (allocated_map[map_index] == 0) --map_index;
+    allocated_map[block] &= ~mask;
 }
 
+void* newArena(int blocksize, int numblocks) {}
+
+void freeArena(void* arena) {}
+
+void allocateEx(void* arena) {}
+
+void deallocateEx(void* arena, void* data) {}
