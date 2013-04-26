@@ -9,12 +9,12 @@
 extern unsigned short allocated_map[NUM_BLOCKS/16];*/
 
 extern void* allocate(void);
-extern void deallocate(void *data);
+extern void  deallocate(void *data);
 
 extern void* newArena(int blocksize, int numblocks);
-extern void freeArena(void* arena);
+extern void  freeArena(void* arena);
 
-extern void allocateEx(void* arena);
-extern void deallocateEx(void* arena, void* data);
+extern void* allocateEx(void* arena);
+extern void  deallocateEx(void* arena, void* data);
 
 #endif
