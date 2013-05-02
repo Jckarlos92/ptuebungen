@@ -13,6 +13,8 @@ struct ArenaElem {
 unsigned char arena[BLOCKSIZE*NUM_BLOCKS]; 
 unsigned short allocated_map[NUM_BLOCKS/16];
 
+/* hilfsfunktion fürs aufrunden
+ * damit sparen wir die Abhängigkeit von der C-Mathebibliothek */
 static int nexthigher(float c) {
     int ci = (int) c;
 
@@ -85,7 +87,7 @@ void* newArena(int blocksize, int numblocks) {
     arena->numblocks = numblocks;
     arena->blocksize = blocksize;
 
-    return arena;
+    return (void*)arena;
 }
 
 void freeArena(void* arena) {
