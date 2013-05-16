@@ -4,6 +4,7 @@ public class DoubleVergleich {
 	public static void main (String[] args) {
 		double a = 0.0;
 		double b = 0.1;
+
 		for (int i=0; i<10; i++) {
 			a = a + b;
 		}
@@ -11,9 +12,16 @@ public class DoubleVergleich {
 		System.out.println(a);
 	}
 }
-//Da 0.1 ein periodischer Binärbruch der Form 0.000110011001100110011... etc. ist,
-//kann es vom Rechner nicht exakt dargestellt werden. Aufgrund des Darstellungsfehler
-//erhält für a nicht 1 sondern 0,9999..., was im Vergleich mit 1.0 natürlich false ergibt.
-//Eine möglichkeit wäre es ein Integer n zu finden, der multipliziert mit b wieder einen
-//Integer ergibt. Multipliziert den Vergleichswert ebenfalls mit n, sollte ein gültiger 
-//Vergleich möglich sein (n wäre in diesem Fall 10).
+/* Zu Frage 1:
+ * Da 0.1 ein periodischer BinÃ¤rbruch der Form 0.000110011001100110011... etc.
+ * ist, kann es vom Rechner nicht exakt dargestellt werden. Aufgrund des
+ * Darstellungsfehler erhÃ¤lt fÃ¼r a nicht 1 sondern 0,9999..., was im Vergleich
+ * mit 1.0 natÃ¼rlich false ergibt.
+ *
+ * Zu Frage 2:
+ * Die beste MÃ¶glichkeit wÃ¤re, eine Toleranzgrenze fÃ¼r solche Fehler zu finden.
+ * So kÃ¶nnte man die Differenz aus dem Rechenergebnis und dem erwarteten
+ * Ergebnis bilden und mit dieser Toleranzgrenze vergleichen.  Ist der Fehler
+ * im Toleranzbereich, so kann das Ergebnis als gleich betrachtet werden,
+ * andernfalls eben nicht.
+ * */
