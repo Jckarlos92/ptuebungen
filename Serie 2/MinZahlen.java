@@ -4,10 +4,12 @@ public class MinZahlen {
 	public static void main (String[] args) {
 		int temp;
 		int min;
+
 		System.out.println("Zahl eingeben:");
 		In.init();
 		temp = In.getInt();
 		min = temp;
+
 		while (temp >= 0) {
 			if (temp < min) {
 				min = temp;
