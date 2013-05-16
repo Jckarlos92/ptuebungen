@@ -18,7 +18,7 @@ public class MinZahlen {
 			temp = In.getInt();
 		}
 		if (min < 0) {
-			System.out.println("Keine gültige Eingabe erfolgt.");
+			System.out.println("Keine gÃ¼ltige Eingabe erfolgt.");
 		} else {
 			System.out.println("Die kleinste Zahl ist "+min);
 		}
