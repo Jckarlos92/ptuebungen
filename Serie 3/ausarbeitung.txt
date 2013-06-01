@@ -1,0 +1,43 @@
+### Aufgabe 1
+## Aufgabenteil a
+In multiply.c jeweils die Konstante N angepasst.
+In multiply.java jeweils static final int N verändert.
+
+## Aufgabenteil b für multiply.c
+Messungen wurden in die Datei "messungen.data" ausgelagert.
+Dort kann man deutlich den exponentiellen Zuwachs der Laufzeit beobachten.
+
+## Aufgabenteil c
+Wesentlichen Einfluss auf die Laufzeit haben die zeitgleich zum Test laufenden
+Programme wie Fenstermanager und das Ein-/Ausgabesystem.  Im Falle des
+Java-Programmes ist auch die Menge des verfügbaren Arbeitsspeichers
+entscheidend. Darüber hinaus kann es einen Unterschied im Hinblick auf die
+Gesamtlaufzeit machen, ob das Programm vorher schon gelaufen ist, und sich schon
+Bestandteile davon im Hauptspeicher befunden haben.
+
+## Aufgabenteil d
+Siehe die Datei "plot.png"
+
+
+### Aufgabe 2
+i) 
+      O(100 * N²) TM O(N³)
+    c1 * 100 * N² <= c2*N³ | N², weil Eingabegröße != 0
+         c1 * 100 <= c2 * N
+
+    Die Aussage ist wahr, weil die linke Seite nicht anwächst, die
+    rechte mit zunehmender Eingabegröße jedoch schon.
+
+ii)
+    10n + 20 <= c * n | Konstanten sind für die Laufzeit uninteressant
+    10n <= cn
+    ==> c >= 10
+
+    Die Aussage ist wahr, da c nur so gewählt werden muss, dass
+    cn den Term 10n dominiert.
+
+iii)
+    n^(1.5) <= cn * log(n)
+    sqrt(n³) <= cn * log(n)
+    Nein, die Aussage gilt nicht, da sqrt(n³) schneller wächst
+    als die rechte Seite.
