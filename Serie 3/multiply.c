@@ -67,16 +67,12 @@ int main() {
 
   clock_t t = clock();
 
-  mult(C, A, B);
-  printf("========== A ============\n");
-  print(A);
-  printf("========== B ============\n");
-  print(B);
-  printf("========== C ============\n");
-  print(C);
+  int i;
+  for (i = 0; i < 10000; ++i)
+      mult(C, A, B);
 
   t = clock() - t;
 
   printf("=========================\n");
-  printf("%d Clicks bzw. %fs für Multiplikationen benötigt!\n", (int)t, ((float)t/CLOCKS_PER_SEC));
+  printf("%d Clicks für 10000 Multiplikationen -- %fs für eine benötigt!\n", (int)t, ((float)t/CLOCKS_PER_SEC)/10000);
 }
