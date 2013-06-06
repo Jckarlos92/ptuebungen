@@ -17,7 +17,8 @@ Bestandteile davon im Hauptspeicher befunden haben.
 
 ## Aufgabenteil d
 Siehe die Datei "plot.png"
-
+Leider war die Auflösung der clock()-Funktion für multiply.c für Eingaben
+N <= 50 nicht ausreichend, sodass  hier Werte von 0 eingetragen wurden.
 
 ### Aufgabe 2
 i) 
