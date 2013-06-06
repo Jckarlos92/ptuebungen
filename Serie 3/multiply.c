@@ -3,7 +3,7 @@
 #include <time.h>
 
 /* Dimension of the matrices */
-#define N 50
+#define N 10
 
 /* global matrices */
 double A[N][N];
@@ -75,7 +75,7 @@ int main() {
   printf("========== C ============\n");
   print(C);
 
-  t = clock();
+  t = clock() - t;
 
   printf("=========================\n");
   printf("%d Clicks bzw. %fs für Multiplikationen benötigt!\n", (int)t, ((float)t/CLOCKS_PER_SEC));
