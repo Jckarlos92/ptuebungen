@@ -32,7 +32,10 @@ public class DoubleLinkedList implements Deque {
         }
 
         ListElement newFirstElement = new ListElement(e, this.first, null);
-        this.first.prev = newFirstElement;
+        
+        if (first != null)
+            this.first.prev = newFirstElement;
+
         this.first = newFirstElement;
 
         if (++elementCount == 1) {
@@ -46,7 +49,10 @@ public class DoubleLinkedList implements Deque {
         }
 
         ListElement newLastElement = new ListElement(e, null, this.last);
-        this.last.next = newLastElement;
+        
+        if (last != null)
+            this.last.next = newLastElement;
+
         this.last = newLastElement;
         
         if (++elementCount == 1) {
@@ -61,7 +67,8 @@ public class DoubleLinkedList implements Deque {
         
         Object retObj = this.first.obj;
         this.first = this.first.next;
-        this.first.prev = null;
+        
+        if (this.first != null) this.first.prev = null;
         
         if (--elementCount == 1) {
             this.last = this.first;
