@@ -29,9 +29,9 @@ public class Ringbuffer implements Deque {
             throw new DequeFull();
         }
 
-        if (first-1 < 0) {
+        if (--first < 0) {
             // Den Ring simulieren, und wieder zum Anfang springen
-            first = Math.abs(--first) % capacity;
+            first = Math.abs(first) % capacity;
         }
         
         oblist[first] = e;
@@ -42,9 +42,9 @@ public class Ringbuffer implements Deque {
             throw new DequeFull();
         }
 
-        if (last+1 > capacity-1) {
+        if (++last > capacity-1) {
             // Den Ring simulieren, und wieder zum Anfang springen
-            last = (++last) % capacity;
+            last = last % capacity;
         }
         
         oblist[last] = e;
@@ -57,8 +57,8 @@ public class Ringbuffer implements Deque {
         Object retObject = oblist[first];
         oblist[first] = null;
 
-        if (first+1 > capacity-1) {
-            first = (++first)%capacity;
+        if (++first > capacity-1) {
+            first = first%capacity;
         }
 
         return retObject;
@@ -71,8 +71,8 @@ public class Ringbuffer implements Deque {
         Object retObject = oblist[last];
         oblist[last] = null;
 
-        if (last-1 < 0) {
-            last = Math.abs(--last)%capacity;
+        if (--last < 0) {
+            last = Math.abs(last)%capacity;
         }
 
         return retObject;
@@ -83,7 +83,7 @@ public class Ringbuffer implements Deque {
     }
 
     private boolean isEmpty() {
-        return !isFull();
+        return (last-first) == 0;
     }
 }
 
