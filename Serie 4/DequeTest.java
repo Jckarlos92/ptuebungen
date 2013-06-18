@@ -11,7 +11,7 @@ class DequeTest {
         for (int i=0; i<500; ++i) {
             ringBuffer.addLast(new Object());
         }
-        
+
         long middleTick = java.lang.System.nanoTime(); 
         
         for (int i=0; i<500; ++i) {
@@ -38,11 +38,13 @@ class DequeTest {
 
         long endTick2 = java.lang.System.nanoTime();
 
-        System.out.println("Total runtime of benchmark for Ringbuffer: " + (endTick - startTick) + "ns");
+        System.out.println("Total runtime of benchmark for RingBuffer: " + (endTick - startTick) + "ns");
         System.out.println("\tInserting 500 elements: " + (middleTick - startTick) + "ns");
         System.out.println("\tDeleting and inserting 500 times: " + (endTick - middleTick) + "ns");
-        System.out.println("Total runtime of benchmark for Ringbuffer: " + (endTick2 - startTick2) + "ns");
+        System.out.println("\tAverage time for inserting and deleting one element: " + (endTick - middleTick)/500 + "ns");
+        System.out.println("Total runtime of benchmark for DoubleLinkedList: " + (endTick2 - startTick2) + "ns");
         System.out.println("\tInserting 500 elements: " + (middleTick2 - startTick2) + "ns");
         System.out.println("\tDeleting and inserting 500 times: " + (endTick2 - middleTick2) + "ns");
+        System.out.println("\tAverage time for inserting and deleting one element: " + (endTick2 - middleTick2)/500 + "ns");
     }
 }
