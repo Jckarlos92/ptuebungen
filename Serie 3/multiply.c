@@ -3,7 +3,7 @@
 #include <time.h>
 
 /* Dimension of the matrices */
-#define N 10
+#define N 1000
 
 /* global matrices */
 double A[N][N];
@@ -67,12 +67,12 @@ int main() {
 
   clock_t t = clock();
 
-  int i;
-  for (i = 0; i < 10000; ++i)
+/*  int i;
+  for (i = 0; i < 10000; ++i)*/
       mult(C, A, B);
 
   t = clock() - t;
 
   printf("=========================\n");
-  printf("%d Clicks für 10000 Multiplikationen -- %fs für eine benötigt!\n", (int)t, ((float)t/CLOCKS_PER_SEC)/10000);
+  printf("%d Clicks für 1 Multiplikation(en) -- %fs für 1 Multiplikation\n", (int)t, ((float)t/CLOCKS_PER_SEC));
 }
