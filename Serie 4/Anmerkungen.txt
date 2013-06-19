@@ -1,0 +1,7 @@
+Sieht sehr gut aus.
+Folgende Dinge hätte ich anders gemacht:
+
+Ich hätte Class ListElement in eine extra Datei ausgelagert, allerdings ist das eher eine kosmetische Sache, no big deal.
+
+In DoubleLinkedList.java in addFirst und addLast vergleichst du am Anfang (elementCount+1 > capacity). Ginge nicht auch
+einfach (elementCount == capacity)? Dann würde man sich eine Rechenoperation sparen.
