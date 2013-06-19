@@ -1,0 +1,15 @@
+## Laufzeiten der verschiedenen Implementierungen
+Total runtime of benchmark for RingBuffer: 458924ns
+	Inserting 500 elements: 219785ns
+	Deleting and inserting 500 times: 239139ns
+	Average time for inserting and deleting one element: 478ns
+Total runtime of benchmark for DoubleLinkedList: 679272ns
+	Inserting 500 elements: 454477ns
+	Deleting and inserting 500 times: 224795ns
+	Average time for inserting and deleting one element: 449ns
+
+## Auswertung
+Wie man sieht, war die Ringpuffer-Implementierung insgesamt die Schnellere.
+Sie war beim Aufnehmen vieler Elemente schneller, beim häufigen Löschen und
+Einfügen jedoch langsamer. Bei dieser Operation war die Implementierung der
+DoubleLinkedList schneller, wenn auch marginal.
