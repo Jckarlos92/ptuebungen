@@ -75,7 +75,9 @@ class multiply{
     
     long startTick = java.lang.System.nanoTime();
 	// multiply them
+    for (int i=0; i<1000; i++) {
 	mult(C, A, B);
+    }
 	// print them out
     System.out.println("Took " + (java.lang.System.nanoTime() - startTick)+"ns");
     }
