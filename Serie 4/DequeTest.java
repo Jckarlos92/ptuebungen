@@ -21,7 +21,6 @@ class DequeTest {
 
         long endTick = java.lang.System.nanoTime();
     
-
         /* benchmark DoubleLinkedList */
         long startTick2 = java.lang.System.nanoTime();
         
