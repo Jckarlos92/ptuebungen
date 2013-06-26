@@ -1,3 +1,5 @@
+import java.lang.Math.*;
+
 public class DoubleLinkedList  {
     private int capacity;
     private int elementCount;
@@ -11,22 +13,31 @@ public class DoubleLinkedList  {
         this.last = null;
     }
 
-    public sort () {
-        boolean swapped = false;
+    public void sort() {
+        boolean swapped = true;
 
         for (ListElement i = this.first; i != last && swapped; i = i.next) {
+            swapped = false;
             for (ListElement j = this.last; j != i.next; j = j.prev) {
-                if (j.obj < j.prev.obj) {
-                    Object temp = j.obj;
-                    j.obj = j.prev.obj;
-                    j.prev.obj = temp;
+                if (j.val < j.prev.val) {
+                    int temp = j.val;
+                    j.val = j.prev.val;
+                    j.prev.val = temp;
                     swapped = true;
+                    System.out.println("Swapped " + temp + " with " + j.val);
                 }
             }
+
+            if (!swapped) break;
         }
 
     }
 
+    public void print() {
+        for (ListElement i = this.first; i != this.last; i = i.next) {
+            System.out.println(i.val);
+        }
+    }
 
     public int capacity() {
         return this.capacity;
@@ -41,7 +52,7 @@ public class DoubleLinkedList  {
         this.last = null;
     }
 
-    public void addFirst(Object e) throws Exception  {
+    public void addFirst(int e) throws Exception  {
         if (elementCount+1 > capacity) {
             throw new Exception("Liste ist voll!");
         }
@@ -58,7 +69,7 @@ public class DoubleLinkedList  {
         }
     }
 
-    public void addLast(Object e) throws Exception  {
+    public void addLast(int e) throws Exception  {
         if (elementCount+1 > capacity) {
             throw new Exception("Liste ist leer!");
         }
@@ -75,12 +86,12 @@ public class DoubleLinkedList  {
         }
     }
 
-    public Object removeFirst() throws Exception  {
+    public int removeFirst() throws Exception  {
         if (elementCount == 0) {
             throw new Exception("Liste ist leer!");
         }
         
-        Object retObj = this.first.obj;
+        int ret = this.first.val;
         this.first = this.first.next;
         
         if (this.first != null) this.first.prev = null;
@@ -91,15 +102,15 @@ public class DoubleLinkedList  {
             this.last.next = null;
         }
 
-        return retObj;
+        return ret;
     }
 
-    public Object removeLast() throws Exception {
+    public int removeLast() throws Exception {
         if (elementCount == 0) {
             throw new Exception("Liste ist leer!");
         }
         
-        Object retObj = this.last.obj;
+        int ret = this.last.val;
         this.last = this.last.prev;
         this.last.next = null;
         
@@ -109,17 +120,17 @@ public class DoubleLinkedList  {
             this.first.prev = null;
         }
 
-        return retObj;
+        return ret;
     }
 }
 
 class ListElement {
-    public Object obj;
+    public int         val;
     public ListElement next;
     public ListElement prev;
 
-    public ListElement(Object o, ListElement n, ListElement p) {
-        this.obj = o;
+    public ListElement(int o, ListElement n, ListElement p) {
+        this.val = o;
         this.next = n;
         this.prev = p;
     }
