@@ -11,6 +11,23 @@ public class DoubleLinkedList  {
         this.last = null;
     }
 
+    public sort () {
+        boolean swapped = false;
+
+        for (ListElement i = this.first; i != last && swapped; i = i.next) {
+            for (ListElement j = this.last; j != i.next; j = j.prev) {
+                if (j.obj < j.prev.obj) {
+                    Object temp = j.obj;
+                    j.obj = j.prev.obj;
+                    j.prev.obj = temp;
+                    swapped = true;
+                }
+            }
+        }
+
+    }
+
+
     public int capacity() {
         return this.capacity;
     }
