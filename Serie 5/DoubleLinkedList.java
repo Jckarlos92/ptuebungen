@@ -39,7 +39,7 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         for (ListElement i = this.first; i != last && swapped; i = i.next) {
             swapped = false;
             for (ListElement j = this.last; j != i; j = j.prev) {
-                if (j.val.compareTo(j.prev.val) == -1) {
+                if (j.val.compareTo(j.prev.val) < 0) {
                     T temp = j.val;
                     j.val = j.prev.val;
                     j.prev.val = temp;
@@ -53,7 +53,7 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
     }
 
     public void print() {
-        for (ListElement i = this.first; i != this.last; i = i.next) {
+        for (ListElement i = this.first; i != null; i = i.next) {
             System.out.println(i.val);
         }
     }
