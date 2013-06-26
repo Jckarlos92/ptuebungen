@@ -1,6 +1,28 @@
 import java.lang.Math.*;
 
-public class DoubleLinkedList  {
+/* Begründung für die Wahl einer doppelt verketteten Liste:
+ * ========================================================
+ *
+ * Ich habe Bubblesort so kennengelernt, dass man die Liste von
+ * hinten nach vorne abarbeitet. Weiterhin konnten wir dadurch
+ * größtenteils die Implementierung unserer Liste aus der vergangen
+ * Aufgabe verwenden. Natürlich ganz im Sinne von Refactoring ;-)
+ */
+
+public class DoubleLinkedList<T extends Comparable<T>>  {
+    /* ListElement-Klasse hier einnisten */
+    class ListElement {
+        public T val;
+        public ListElement next;
+        public ListElement prev;
+
+        public ListElement(T o, ListElement n, ListElement p) {
+            this.val = o;
+            this.next = n;
+            this.prev = p;
+        }
+    }
+
     private int capacity;
     private int elementCount;
     private ListElement first;
@@ -13,18 +35,17 @@ public class DoubleLinkedList  {
         this.last = null;
     }
 
-    public void sort() {
+    public void bubblesort() {
         boolean swapped = true;
 
         for (ListElement i = this.first; i != last && swapped; i = i.next) {
             swapped = false;
-            for (ListElement j = this.last; j != i.next; j = j.prev) {
-                if (j.val < j.prev.val) {
-                    int temp = j.val;
+            for (ListElement j = this.last; j != i; j = j.prev) {
+                if (j.val.compareTo(j.prev.val) == -1) {
+                    T temp = j.val;
                     j.val = j.prev.val;
                     j.prev.val = temp;
                     swapped = true;
-                    System.out.println("Swapped " + temp + " with " + j.val);
                 }
             }
 
@@ -52,7 +73,7 @@ public class DoubleLinkedList  {
         this.last = null;
     }
 
-    public void addFirst(int e) throws Exception  {
+    public void addFirst(T e) throws Exception  {
         if (elementCount+1 > capacity) {
             throw new Exception("Liste ist voll!");
         }
@@ -69,7 +90,7 @@ public class DoubleLinkedList  {
         }
     }
 
-    public void addLast(int e) throws Exception  {
+    public void addLast(T e) throws Exception  {
         if (elementCount+1 > capacity) {
             throw new Exception("Liste ist leer!");
         }
@@ -86,12 +107,12 @@ public class DoubleLinkedList  {
         }
     }
 
-    public int removeFirst() throws Exception  {
+    public T removeFirst() throws Exception  {
         if (elementCount == 0) {
             throw new Exception("Liste ist leer!");
         }
         
-        int ret = this.first.val;
+        T ret = this.first.val;
         this.first = this.first.next;
         
         if (this.first != null) this.first.prev = null;
@@ -105,12 +126,12 @@ public class DoubleLinkedList  {
         return ret;
     }
 
-    public int removeLast() throws Exception {
+    public T removeLast() throws Exception {
         if (elementCount == 0) {
             throw new Exception("Liste ist leer!");
         }
         
-        int ret = this.last.val;
+        T ret = this.last.val;
         this.last = this.last.prev;
         this.last.next = null;
         
@@ -124,14 +145,3 @@ public class DoubleLinkedList  {
     }
 }
 
-class ListElement {
-    public int         val;
-    public ListElement next;
-    public ListElement prev;
-
-    public ListElement(int o, ListElement n, ListElement p) {
-        this.val = o;
-        this.next = n;
-        this.prev = p;
-    }
-}
