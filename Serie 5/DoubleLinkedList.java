@@ -23,13 +23,11 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         }
     }
 
-    private int capacity;
     private int elementCount;
     private ListElement first;
     private ListElement last;
 
-    public DoubleLinkedList(int maxCapacity) {
-        this.capacity = maxCapacity;
+    public DoubleLinkedList() {
         this.elementCount = 0;
         this.first = null;
         this.last = null;
@@ -60,10 +58,6 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         }
     }
 
-    public int capacity() {
-        return this.capacity;
-    }
-
     public int size() {
         return this.elementCount;
     }
@@ -73,11 +67,7 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         this.last = null;
     }
 
-    public void addFirst(T e) throws Exception  {
-        if (elementCount+1 > capacity) {
-            throw new Exception("Liste ist voll!");
-        }
-
+    public void addFirst(T e)   {
         ListElement newFirstElement = new ListElement(e, this.first, null);
         
         if (first != null)
@@ -90,11 +80,7 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         }
     }
 
-    public void addLast(T e) throws Exception  {
-        if (elementCount+1 > capacity) {
-            throw new Exception("Liste ist leer!");
-        }
-
+    public void addLast(T e)   {
         ListElement newLastElement = new ListElement(e, null, this.last);
         
         if (last != null)
@@ -107,11 +93,7 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         }
     }
 
-    public T removeFirst() throws Exception  {
-        if (elementCount == 0) {
-            throw new Exception("Liste ist leer!");
-        }
-        
+    public T removeFirst()   {
         T ret = this.first.val;
         this.first = this.first.next;
         
@@ -126,11 +108,7 @@ public class DoubleLinkedList<T extends Comparable<T>>  {
         return ret;
     }
 
-    public T removeLast() throws Exception {
-        if (elementCount == 0) {
-            throw new Exception("Liste ist leer!");
-        }
-        
+    public T removeLast()  {
         T ret = this.last.val;
         this.last = this.last.prev;
         this.last.next = null;
