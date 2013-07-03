@@ -3,12 +3,11 @@ import java.util.Random;
 /* Empirische Messsung:
  * ====================
  * Um eine unsortierte Menge von 150000 zufälligen
- * Elementen zu sortieren, benötigt der Algorithmus 36271805ns = 3,62718ms.
+ * Elementen zu sortieren, benötigt der Algorithmus 36271805ns = 36,2718ms.
  * Die Laufzeit im schlimmsten Falle (also auf einer schon sortierten Menge)
- * ließ sich nicht ermitteln, da es zum Stackoverflow kam. Auch eine geringere
- * Anzahl Elemente von 100001 behob das Problem nicht. Dies zeigt eindrucksvoll,
- * wie sich Quicksort auf einer vorsortierten Menge verschlechtert... */
-
+ * ließ sich erst ermitteln, nachdem die Stack-Größe angehoben wurde. Sonst
+ * kam es zum Stack-Overflow. Damit dauerte das Sortieren auf einer schon sortierten
+ * Menge 8194970143ns = 8194,96ms = 8,195s */
 
 class Quicksort {	
     public static void main(String[] args) {
