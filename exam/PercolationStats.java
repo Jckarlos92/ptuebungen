@@ -9,10 +9,13 @@ public class PercolationStats {
             throw new java.lang.IllegalArgumentException("Illegal Argument dude!");
         }
 
+        double fields  = N*N;
+
         repetitions = T;
         mean        = 0.0;
         stddev      = 0.0;
 
+        double tmp;
         double[] estimateArray = new double[T];
 
         // perform T independent computational experiments on an N-by-N grid
@@ -30,20 +33,14 @@ public class PercolationStats {
                 }
             }
 
-            mean += openSites;
-            estimateArray[rep] = (openSites/(N*N));
+            tmp   = openSites/fields;
+            estimateArray[rep] = tmp;
         }
 
-        mean /= T;
-        mean /= N*N;
-
-        for (int i = 0; i < T; ++i) {
-            stddev += Math.pow(estimateArray[i] - mean, 2);
-        }
-
-        stddev /= T - 1;
-        sigma = Math.sqrt(stddev);
-        sqrtT = Math.sqrt(T);
+        mean   = StdStats.mean(estimateArray);
+        stddev = StdStats.stddev(estimateArray);
+        sigma  = Math.sqrt(stddev);
+        sqrtT  = Math.sqrt(T);
     }
     public double mean() {
         // sample mean of percolation threshold

@@ -60,8 +60,13 @@ public class Percolation {
 
         // connect to drain
         // by doing it this way we avoid the backwash
-        if (i == fieldWidth && isFull(i,j)) {
-            uf.union(ugIndex, fieldWidth*fieldWidth + 1);
+        if (isFull(i,j)) {
+            for (int c=1; c <= fieldWidth; ++c) {
+                if (uf.connected(ugIndex, calculateIndex(fieldWidth, c)+1)) {
+                    uf.union(calculateIndex(fieldWidth, c)+1, fieldWidth*fieldWidth + 1);
+                    break;
+                }
+            }
         }
     }
 
